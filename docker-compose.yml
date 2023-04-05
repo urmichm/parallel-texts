@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  sql_db:
+    platform: linux/x86_64
+    image: mysql:8.0.26
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: my_secret_password
+      MYSQL_DATABASE: parallel_test_db
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: my_secret_admin_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+volumes:
+  mysql-data:
