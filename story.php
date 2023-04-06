@@ -1,15 +1,17 @@
 <?php
     // primary secondary tertiary
-    include "model/mock_text.php";
-
+    require_once "model/domain/Story.php";
+    require_once "model/domain/StoryPart.php";
     require "model/sql_database.php";
     require "model/story_db.php";
 
     $story = get_story($_GET['id']);
+    $originalStory = get_story($story->getOriginalStoryId());
 
-    $pagetitle = $story['title'];
+    $PAGE_TITLE = $story->getTitle();
 
-
+    $story->loadStoryParts();
+    $originalStory->loadStoryParts();
 
     class ParallelText {
         public $primary;
@@ -25,11 +27,7 @@
         }
     }
 
-    $parallelText = new ParallelText(
-        get_story_content($_GET['id']) ,
-        get_story_content(1) );
-
-    
+     
     // get all stories from SQL database and store in $stories
     $stories = get_all_stories();
 
@@ -38,7 +36,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title><?php echo $pagetitle; ?> - Sunflower Style</title>
+	<title><?php echo $PAGE_TITLE; ?> - Sunflower Style</title>
     <link rel="stylesheet" type="text/css" href="view/css/style.css">
 </head>
 <body>
@@ -62,20 +60,42 @@
             </aside>
         </div>
 
-
-        
         <div class="main">
             <main>
                 <section>	
                     <?php 
-                        $size = $parallelText->getSize();
-                        for($i = 0; $i < $size; $i++){
-                            $primary = $parallelText->primary[$i]['content_text'];
-                            $secondary = $parallelText->secondary[$i]['content_text'];
-                            echo "<span class=\"parallel-text\">";
-                            echo "<h1 class=\"original\">$primary</h1>";
-                            echo "<h1 class=\"translation\">$secondary</h1>";
-                            echo "</span>";
+                        $totalNumberOfParts = count($story->getStoryParts());
+                        for($p = 0; $p < $totalNumberOfParts; $p++)
+                        {
+                            $storyPart = $story->getStoryParts()[$p];
+                            $originalStoryPart = $originalStory->getStoryParts()[$p];
+
+                            if($storyPart->hasTitle() && $originalStoryPart->hasTitle())
+                            {
+                                echo "<span class=\"parallel-text\">";
+                                echo "<h2 class=\"original\">".$storyPart->getTitle()."</h2>";
+                                echo "<h2 class=\"translation\">".$originalStoryPart->getTitle()."</h2>";
+                                echo "</span>";
+                            }
+
+                            $parallelText = new ParallelText(
+                                get_story_content( $storyPart->getStartContentId(), 
+                                                   $storyPart->getEndContentId() ) ,
+                        
+                                get_story_content( $originalStoryPart->getStartContentId(), 
+                                                   $originalStoryPart->getEndContentId() ) 
+                                        );
+
+                        
+                            $size = $parallelText->getSize();
+                            for($i = 0; $i < $size; $i++){
+                                $primary = $parallelText->primary[$i]['content_text'];
+                                $secondary = $parallelText->secondary[$i]['content_text'];
+                                echo "<span class=\"parallel-text\">";
+                                echo "<h3 class=\"original\">$primary</h3>";
+                                echo "<h3 class=\"translation\">$secondary</h3>";
+                                echo "</span>";
+                            }
                         }
                     ?>
 
