@@ -35,10 +35,9 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-	<title><?php echo $PAGE_TITLE; ?> - Sunflower Style</title>
-    <link rel="stylesheet" type="text/css" href="view/css/style.css">
-</head>
+
+<?php include "view/head.php"; ?>
+
 <body>
 
     <!-- Header -->
@@ -73,8 +72,8 @@
                             if($storyPart->hasTitle() && $originalStoryPart->hasTitle())
                             {
                                 echo "<span class=\"parallel-text\">";
-                                echo "<h2 class=\"original\">".$storyPart->getTitle()."</h2>";
                                 echo "<h2 class=\"translation\">".$originalStoryPart->getTitle()."</h2>";
+                                echo "<h2 class=\"original\">".$storyPart->getTitle()."</h2>";
                                 echo "</span>";
                             }
 
@@ -92,8 +91,8 @@
                                 $primary = $parallelText->primary[$i]['content_text'];
                                 $secondary = $parallelText->secondary[$i]['content_text'];
                                 echo "<span class=\"parallel-text\">";
-                                echo "<h3 class=\"original\">$primary</h3>";
                                 echo "<h3 class=\"translation\">$secondary</h3>";
+                                echo "<h3 class=\"original\">$primary</h3>";
                                 echo "</span>";
                             }
                         }
@@ -107,10 +106,12 @@
     <!-- Footer -->
     <?php include "view/footer.php"; ?>
 
+    <?php include "view/scripts.php"; ?>
+
     <script>
 		const translations = document.querySelectorAll(".translation");
 		translations.forEach((translation) => {
-			const original = translation.previousElementSibling;
+			const original = translation.nextElementSibling;
 			original.addEventListener("click", () => {
 				translation.classList.toggle("show");
 			});

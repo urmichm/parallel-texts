@@ -16,10 +16,9 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-	<title><?php echo $PAGE_TITLE; ?> - Sunflower Style</title>
-    <link rel="stylesheet" type="text/css" href="view/css/style.css">
-</head>
+
+<?php include "view/head.php"; ?>
+
 <body>
 
     <!-- Header -->
@@ -55,6 +54,8 @@
 
     <!-- Footer -->
     <?php include "view/footer.php"; ?>
+
+    <?php include "view/scripts.php"; ?>
 
     <script>
 		const translations = document.querySelectorAll(".translation");
