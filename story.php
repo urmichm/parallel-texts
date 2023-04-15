@@ -44,6 +44,8 @@
     <?php include "view/header.php"; ?>
 
     <div class="container">
+
+        <!-- Left side bar -->
         <div class="sidebar">
             <aside>
                 <h2>Left Sidebar</h2>
@@ -59,6 +61,7 @@
             </aside>
         </div>
 
+        <!-- Right side bar -->
         <div class="main">
             <main>
                 <section>	
@@ -101,6 +104,7 @@
                 </section>
             </main>
         </div>
+        
     </div>
 
     <!-- Footer -->
