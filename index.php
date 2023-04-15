@@ -7,7 +7,7 @@
     require "model/sql_database.php";
     require "model/story_db.php";
 
-    $pagetitle = "Twin Texts Wiki";
+    $PAGE_TITLE = "Twin Texts Wiki";
 
     // get all stories from SQL database and store in $stories
     $stories = get_all_stories();
@@ -17,7 +17,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title><?php echo $pagetitle; ?> - Sunflower Style</title>
+	<title><?php echo $PAGE_TITLE; ?> - Sunflower Style</title>
     <link rel="stylesheet" type="text/css" href="view/css/style.css">
 </head>
 <body>
