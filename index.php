@@ -25,21 +25,15 @@
     <?php include "view/header.php"; ?>
 
     <div class="container">
-        <div class="sidebar">
-            <aside>
-                <h2>Left Sidebar</h2>
-                <nav>
-                    <ul>
-                        <?php
-                            foreach($stories as $story){
-                                echo "<li><a href=\"story.php?id=$story[id]\">$story[title]</a></li>";
-                            }
-                        ?>
-                    </ul>
-                </nav>
-            </aside>
+
+        <div class="ui vertical menu">
+            <?php
+                foreach($stories as $story){
+                    echo "<a href=\"story.php?id=$story[id]\" class=\"item\">$story[title]</a>";
+                }
+            ?>
         </div>
-        
+
 
         <div class="main">
             <main>
@@ -56,16 +50,6 @@
     <?php include "view/footer.php"; ?>
 
     <?php include "view/scripts.php"; ?>
-
-    <script>
-		const translations = document.querySelectorAll(".translation");
-		translations.forEach((translation) => {
-			const original = translation.previousElementSibling;
-			original.addEventListener("click", () => {
-				translation.classList.toggle("show");
-			});
-		});
-	</script>
 
 </body>
 </html>
