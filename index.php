@@ -24,7 +24,7 @@
     <!-- Header -->
     <?php include "view/header.php"; ?>
 
-    <div class="container">
+    <div class="pt-container">
 
         <div class="ui vertical menu">
             <?php
@@ -35,7 +35,7 @@
         </div>
 
 
-        <div class="main">
+        <div class="pt-main">
             <main>
                 <section>	
                     <?php 

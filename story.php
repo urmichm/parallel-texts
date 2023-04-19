@@ -43,28 +43,20 @@
     <!-- Header -->
     <?php include "view/header.php"; ?>
 
-    <div class="container">
+    <div class="pt-container">
 
-        <!-- Left side bar -->
-        <div class="sidebar">
-            <aside>
-                <h2>Left Sidebar</h2>
-                <nav>
-                    <ul>
-                        <?php
-                            foreach($stories as $s){
-                                echo "<li><a href=\"story.php?id=$s[id]\">$s[title]</a></li>";
-                            }
-                        ?>
-                    </ul>
-                </nav>
-            </aside>
+        <div class="ui vertical menu">
+            <?php
+                foreach($stories as $s){
+                    echo "<a href=\"story.php?id=$s[id]\" class=\"item\">$s[title]</a>";
+                }
+            ?>
         </div>
 
         <!-- Right side bar -->
-        <div class="main">
+        <div class="pt-main">
             <main>
-                <section>	
+                <section>
                     <?php 
                         $totalNumberOfParts = count($story->getStoryParts());
                         for($p = 0; $p < $totalNumberOfParts; $p++)
@@ -94,8 +86,8 @@
                                 $primary = $parallelText->primary[$i]['content_text'];
                                 $secondary = $parallelText->secondary[$i]['content_text'];
                                 echo "<span class=\"parallel-text\">";
-                                echo "<h3 class=\"translation\">$secondary</h3>";
-                                echo "<h3 class=\"original\">$primary</h3>";
+                                echo "<p class=\"translation\">$secondary</p>";
+                                echo "<p class=\"original\">$primary</p>";
                                 echo "</span>";
                             }
                         }
