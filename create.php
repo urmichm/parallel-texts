@@ -12,71 +12,35 @@
     <div class="ui container">
 
         <div class="ui form">
-            <form action="submit.php" method="post">
 
+            <div class="ui segment">
                 <div class="two fields">
-                    <div class="field">
-                        <!-- first text input column -->
-                        <label for="text1">Text 1:</label>
-                        <textarea id="text1" name="text1" rows="5" ></textarea>
-                    </div>
 
-                    <div class="field">
-                        <!-- second text input column -->
-                        <label for="text2">Text 2:</label>
-                        <textarea id="text2" name="text2" rows="5" ></textarea>
+                    <div class="field" id="original-text">
+                        <label>Original Text:</label>
+                        <!-- <textarea rows="5" ></textarea> -->
+                        <!-- <button class="ui button icon"><i class="save icon"></i></button> -->
+                    </div>                            
+
+                    <div class="field" id="translated-text">
+                        <label>Parallel Translation:</label>
+                        <!-- <textarea rows="5" ></textarea> -->
+                        <!-- <button class="ui button icon save"><i class="save icon"></i></button> -->
                     </div>
                 </div>
 
                 <!-- button to add another text input couple -->
                 <button class="ui button" type="button" id="add-text">+</button>
 
-                <!-- submit button -->
-                <button class="ui button" type="submit">Submit</button>
-
-            </form>
+            </div>
         </div>
+
+        <button class="ui primary button" id="publish-button">Publish</button>
+
     </div>
 
+    <?php include "view/scripts.php"; ?>
 
-
-
-    <script>
-        // add another text input couple when the button is clicked
-        document.getElementById('add-text').addEventListener('click', function() {
-
-            var form = document.querySelector('form');
-
-            var twoFieldsDiv = document.createElement('div');
-            twoFieldsDiv.classList.add('two');
-            twoFieldsDiv.classList.add('fields');
-            
-            var leftFieldDiv = document.createElement('div');
-            leftFieldDiv.classList.add('field');
-
-            var leftTextArea = document.createElement('textarea');
-            leftTextArea.setAttribute('rows', '5');
-            leftTextArea.setAttribute('name', 'text');
-
-            leftFieldDiv.appendChild(leftTextArea);
-
-            var rightFieldDiv = document.createElement('div');
-            rightFieldDiv.classList.add('field');
-
-            var rightTextArea = document.createElement('textarea');
-            rightTextArea.setAttribute('rows', '5');
-            rightTextArea.setAttribute('name', 'text');
-
-            rightFieldDiv.appendChild(rightTextArea);
-
-            twoFieldsDiv.appendChild(leftFieldDiv);
-            twoFieldsDiv.appendChild(rightFieldDiv);
-
-            console.log(twoFieldsDiv);
-            console.log(document.getElementById('add-text'));
-            console.log(form);
-            form.insertBefore(twoFieldsDiv, document.getElementById('add-text'));
-        });
-    </script>
+    <script src="javascript/create.js"></script>
 
 </body>
