@@ -1,8 +1,4 @@
 <?php
-    $aa = 3;
-    echo $aa;
-    // primary secondary tertiary
-    include "model/mock_text.php";
 
     require "model/sql_database.php";
     require "model/story_db.php";
@@ -11,7 +7,6 @@
 
     // get all stories from SQL database and store in $stories
     $stories = get_all_stories();
-
 ?>
 
 <!DOCTYPE html>
@@ -24,26 +19,28 @@
     <!-- Header -->
     <?php include "view/header.php"; ?>
 
-    <div class="pt-container">
+    <div class="ui grid">
 
-        <div class="ui vertical menu">
-            <?php
-                foreach($stories as $story){
-                    echo "<a href=\"story.php?id=$story[id]\" class=\"item\">$story[title]</a>";
-                }
-            ?>
+        <div class="three wide column">
+            <div class="ui vertical menu">
+                <?php
+                    foreach($stories as $story){
+                        echo "<a href=\"story.php?id=$story[id]\" class=\"item\">$story[title]</a>";
+                    }
+                ?>
+            </div>
         </div>
 
-
-        <div class="pt-main">
-            <main>
-                <section>	
-                    <?php 
-                        echo "<h1>TODO: Make the welcome page</h1>";
-                    ?>
-                </section>
-            </main>
+        <div class="twelve wide stretched column">
+                <main>
+                    <section>	
+                        <?php 
+                            echo "<h1>TODO: Make the welcome page</h1>";
+                        ?>
+                    </section>
+                </main>
         </div>
+
     </div>
 
     <!-- Footer -->
