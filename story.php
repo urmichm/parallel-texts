@@ -2,8 +2,16 @@
     // primary secondary tertiary
     require_once "model/domain/Story.php";
     require_once "model/domain/StoryPart.php";
-    require "model/sql_database.php";
-    require "model/story_db.php";
+    require_once "model/sql_database.php";
+    require_once "model/story_db.php";
+    require_once "model/author_db.php";
+
+
+    session_start();
+	$user_id = $_SESSION['user_id'] ?? null;
+    if($user_id) {
+		$author = get_author_by_id($user_id);
+	}
 
     $story = get_story($_GET['id']);
     $originalStory = get_story($story->getOriginalStoryId());

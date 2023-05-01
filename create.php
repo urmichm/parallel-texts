@@ -1,5 +1,15 @@
 <?php
+    
+    require_once 'model/story_db.php';
+    require_once "model/author_db.php";
+
     $PAGE_TITLE="New Story";
+
+    session_start();
+	$user_id = $_SESSION['user_id'] ?? null;
+    if($user_id) {
+		$author = get_author_by_id($user_id);
+	}
 ?>
 
 <!DOCTYPE html>
