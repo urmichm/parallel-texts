@@ -13,6 +13,12 @@
             return;
         });
 
+        addSaveButton(  document.getElementById('original-title-block') );
+        addLockTextButton(document.getElementById('original-title-block'));
+
+        addSaveButton(document.getElementById('parallel-title-block'));
+        addLockTextButton(document.getElementById('parallel-title-block'));
+
         let originalTextColumn = document.getElementById('original-text');
         addTextArea(originalTextColumn);
         addSaveButton(originalTextColumn);
