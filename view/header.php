@@ -10,7 +10,7 @@
 			<div class="ui right menu">
 				<?php if($user_id) {?>
 					<a class="ui item" href="/logout.php">Logout</a>
-					<a class="ui item" href="/"><?php echo $author->get_name(); ?></a>
+					<a class="ui item" href="/account.php"><?php echo $author->get_name(); ?></a>
 				<?php } else { ?>
 					<a class="ui item" href="#">Register</a>
 					<a class="ui item" href="/login.php">Login</a>
