@@ -17,7 +17,7 @@
 
         if ($author && hash_equals($password_hashed, $author->get_password())) {
             $_SESSION['user_id'] = $author->get_id();
-            header('Location: index.php');
+            header('Location: account.php');
             return;
         } else {
             $_SESSION['login_error'] = true;
