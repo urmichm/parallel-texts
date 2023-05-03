@@ -102,6 +102,7 @@
         // create button such as <button class="ui button icon"><i class="lock icon"></i></button>
         let icon = document.createElement('i');
         icon.classList.add('lock');
+        icon.classList.add('open');
 
         let button = document.createElement('button');
         button.classList.add('ui');
