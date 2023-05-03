@@ -17,7 +17,7 @@
         return $query_result;
     }
 
-    function get_author_by_id($id)
+    function get_author_by_id($id) : Author
     {
         global $db;
         $query = 'SELECT * FROM authors
