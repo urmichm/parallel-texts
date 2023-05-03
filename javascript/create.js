@@ -16,10 +16,12 @@
         let originalTextColumn = document.getElementById('original-text');
         addTextArea(originalTextColumn);
         addSaveButton(originalTextColumn);
+        addLockTextButton(originalTextColumn);
 
         let translatedTextColumn = document.getElementById('translated-text');
         addTextArea(translatedTextColumn);
         addSaveButton(translatedTextColumn);
+        addLockTextButton(translatedTextColumn);
         
         console.log("DOM fully loaded and parsed");
     }
@@ -45,6 +47,7 @@
 
         addTextArea(block);
         addSaveButton(block);
+        addLockTextButton(block);
 
         parent.appendChild(block);
         return;
@@ -88,6 +91,35 @@
 
         let icon = document.createElement('i');
         icon.classList.add('save');
+        icon.classList.add('icon');
+
+        button.appendChild(icon);
+        parent.appendChild( button);
+        return;
+    }
+
+    function addLockTextButton(parent){
+        // create button such as <button class="ui button icon"><i class="lock icon"></i></button>
+        let icon = document.createElement('i');
+        icon.classList.add('lock');
+
+        let button = document.createElement('button');
+        button.classList.add('ui');
+        button.classList.add('button');
+        button.classList.add('icon');
+
+        button.addEventListener('click', function() {
+            let textarea = parent.querySelectorAll('textarea')[0];
+            let readonly = textarea.getAttribute('readonly');
+            if(readonly){
+                textarea.removeAttribute('readonly');
+                icon.classList.add('open');
+            }else{
+                textarea.setAttribute('readonly', true);
+                icon.classList.remove('open');
+            }
+        });
+
         icon.classList.add('icon');
 
         button.appendChild(icon);
