@@ -13,9 +13,11 @@
             return;
         });
 
+        addTextArea(document.getElementById('original-title-block'), 1);
         addSaveButton(  document.getElementById('original-title-block') );
         addLockTextButton(document.getElementById('original-title-block'));
 
+        addTextArea(document.getElementById('parallel-title-block'), 1);
         addSaveButton(document.getElementById('parallel-title-block'));
         addLockTextButton(document.getElementById('parallel-title-block'));
 
@@ -41,13 +43,13 @@
         twoFieldsDiv.classList.add('two');
         twoFieldsDiv.classList.add('fields');
 
-        addFieldWithTextArea(twoFieldsDiv);
-        addFieldWithTextArea(twoFieldsDiv);
+        createDivWithTextArea(twoFieldsDiv);
+        createDivWithTextArea(twoFieldsDiv);
 
         parent.insertBefore(twoFieldsDiv, document.getElementById('add-text'));
     }
 
-    function addFieldWithTextArea(parent){
+    function createDivWithTextArea(parent){
         var block = document.createElement('div');
         block.classList.add('field');
 
@@ -59,9 +61,10 @@
         return;
     }
 
-    function addTextArea(parent){
+
+    function addTextArea(parent, rows = 5){
         let textArea = document.createElement('textarea');
-        textArea.setAttribute('rows', '5');
+        textArea.setAttribute('rows', rows);
 
         textArea.addEventListener('input', function() {
             parent
@@ -72,6 +75,11 @@
                 .add('red');
           });
 
+        const initial_content = parent.querySelector('input[name="initial_content"]');
+        if(initial_content){
+            textArea.value = initial_content.value;
+        }
+        
         parent.appendChild(textArea);
         return;
     }

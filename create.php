@@ -89,14 +89,14 @@
 
                             <div class="field" id="original-title-block">
                                 <label>Original:</label>
-                                <input type="hidden" id="original-story-id" value="<?php echo $original_story_id ?>">
-                                <textarea rows="1"><?php echo $original_title ?></textarea>
+                                <input type="hidden" id="original-story-id" value="<?php echo $original_story_id ?>"/>
+                                <input type="hidden" name="initial_content" value="<?= $original_title ?>" />
                             </div>
 
                             <div class="field" id="parallel-title-block">
                                 <label>Parallel Translation:</label>
                                 <input type="hidden" id="parallel-story-id" value="<?php echo $parallel_story_id ?>">
-                                <textarea rows="1"><?php echo $parallel_title ?></textarea>
+                                <input type="hidden" name="initial_content" value="<?= $parallel_title ?>" />
                             </div>
                         </div>
                     </div>
