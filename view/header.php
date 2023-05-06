@@ -3,7 +3,6 @@
 		<div class="ui secondary pointing menu">
 			<div class="ui left menu">
 	    		<a class="ui item" href="/">Home</a>
-				<a class="ui item" href="/create.php">Create New</a>
 				<a class="ui item" href="#">Contact</a>
 			</div>
 
