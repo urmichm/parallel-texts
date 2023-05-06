@@ -3,6 +3,9 @@
     require_once "model/author_db.php";
     require_once "model/domain/Author.php";
 
+    require_once "model/draft_story_db.php";
+    require_once "model/domain/DraftStory.php";
+
     session_start();
 
 	$user_id = $_SESSION['user_id'] ?? null;
@@ -10,9 +13,12 @@
 		$author = get_author_by_id($user_id);
 	} else {
         header("Location: login.php");
+        return;
     }
 
     $PAGE_TITLE = $author->get_name() . "'s Account";
+
+    $authors_draft_stories = get_draft_stories_by_author_id($user_id);
 
 ?>
 
@@ -31,7 +37,9 @@
 
         <div class="three wide column">
             <div class="ui vertical menu">
-
+                <?php foreach($authors_draft_stories as $ds){ ?>
+                        <a href="create.php?story_id=<?php echo $ds->get_id(); ?>" class="item"> <?php echo $ds->get_title(); ?> </a>
+                <?php } ?>
             </div>
         </div>
 

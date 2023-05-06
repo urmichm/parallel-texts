@@ -42,6 +42,7 @@
         $parallel_story_id = put_draft_story($parallel_story);
 
         header("Location: create.php?story_id=$parallel_story_id");
+        return;
     }
     else if ($_GET['story_id']) {
         $parallel_story_id = $_GET['story_id'];
@@ -54,6 +55,7 @@
 
         if(0 == $original_story_id) {
             header("Location: error.php");
+            return;
         }
 
         $original_story = get_draft_story_by_id($original_story_id);

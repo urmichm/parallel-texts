@@ -59,4 +59,29 @@
         return $draft_story;
     }
 
+    function get_draft_stories_by_author_id($author_id)
+    {
+        global $db;
+
+        if(!is_numeric($author_id)) {
+            throw new Exception('author_id must be numeric');
+        }
+        if($author_id < 1) {
+            throw new Exception('author_id must be greater than 0');
+        }
+
+        $query = 'SELECT * FROM draft_stories WHERE author_id = :author_id AND 
+                                                    original_story_id IS NOT NULL AND   
+                                                    original_story_id != 0';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':author_id', $author_id);
+        $statement->execute();
+
+        $draft_stories = $statement->fetchAll(PDO::FETCH_CLASS, 'DraftStory');
+
+        $statement->closeCursor();
+
+        return $draft_stories;
+    }
+
 ?>
